@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define environment variables if needed
+        NODE_HOME = tool 'Node.js'
+        PATH = "${NODE_HOME}/bin:${PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Install Node.js dependencies
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the React app
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploy to Nginx') {
+            steps {
+                // Copy build artifacts to the Nginx web root directory
+                sh 'cp -r build/* /path/to/nginx/html'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up or perform any post-build actions here
+        }
+    }
+}
