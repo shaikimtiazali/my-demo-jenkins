@@ -9,6 +9,7 @@ function App() {
       <p>pipeline written by shaik imtiaz ali</p>
       <p>Working on auto triggering jenkins pipeline</p>
       <p>Added Docker push to docker hub with auto tag generation</p>
+      <p>Added Docker push to docker hub with auto tag generation</p>
     </Header>
   );
 }
